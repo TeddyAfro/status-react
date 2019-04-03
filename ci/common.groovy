@@ -50,6 +50,11 @@ def prepNixEnvironment() {
     ).trim()
     env.LOCALE_ARCHIVE_2_27 = "${glibcLocales}/lib/locale/locale-archive"
   }
+
+  utils.nix_sh 'printenv'
+  // if (env.TARGET_PLATFORM == 'ios' || env.TARGET_PLATFORM == 'android') {
+  //   utils.nix_fastlane_sh 'env'
+  // }
 }
 
 def prep(type = 'nightly') {
@@ -66,7 +71,7 @@ def prep(type = 'nightly') {
     /* Run at start to void mismatched numbers */
     utils.genBuildNumber()
     /* install ruby dependencies */
-    utils.nix_sh 'bundle install --quiet'
+    //utils.nix_sh 'bundle install --gemfile=fastlane/Gemfile --quiet'
   }
 
   def prepareTarget=env.TARGET_OS
