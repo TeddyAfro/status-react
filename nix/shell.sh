@@ -27,7 +27,10 @@ if command -v "nix" >/dev/null 2>&1; then
     exec nix-shell --show-trace --argstr target-os ${TARGET_OS}
   else
     is_pure=''
-    [ "${TARGET_OS}" == 'linux' ] && is_pure='--pure'
+    if [ "${TARGET_OS}" == 'linux' ] || [ "${TARGET_OS}" == 'android' ]; then
+      is_pure='--pure'
+      echo "Setting up pure environment"
+    fi
     exec nix-shell ${is_pure} --show-trace --argstr target-os ${TARGET_OS} --run "$@"
   fi
 fi
