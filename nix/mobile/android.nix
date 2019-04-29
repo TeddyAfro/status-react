@@ -42,6 +42,6 @@ in
     '' +
     ''
       echo "=> generating keystore"
-      $PWD/scripts/generate-keystore.sh
+      $(git rev-parse --show-toplevel)/scripts/generate-keystore.sh
     '';
   }

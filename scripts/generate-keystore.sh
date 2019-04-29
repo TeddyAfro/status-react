@@ -19,5 +19,5 @@ STATUS_RELEASE_KEY_PASSWORD=$(property_gradle 'STATUS_RELEASE_KEY_PASSWORD')
 echo "Generating keystore $STORE_FILE"
 keydirname="$( dirname "$STORE_FILE" )"
 [ -d $keydirname ] || mkdir -p $keydirname
-keytool -genkey -v -keystore ${STORE_FILE}  -keyalg RSA -keysize 2048 -validity 10000 -alias ${STATUS_RELEASE_KEY_ALIAS} \
+keytool -genkey -v -keystore ${STORE_FILE} -keyalg RSA -keysize 2048 -validity 10000 -alias ${STATUS_RELEASE_KEY_ALIAS} \
         -storepass ${STATUS_RELEASE_STORE_PASSWORD} -keypass ${STATUS_RELEASE_KEY_PASSWORD} -dname "CN=, OU=, O=, L=, S=, C="
